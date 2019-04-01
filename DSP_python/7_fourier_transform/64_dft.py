@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from matplotlib import style
 from scipy import signal
 from mysignals import InputSignal_1kHz_15kHz
-
+from mysignals import InputSignal_1kHz_15kHz, ecg_signal
 
 def calc_dft (sig_in):
     N = len(sig_in)
@@ -30,7 +30,7 @@ def calc_idft (sig_re, sig_im):
     sig_re_tmp = copy(sig_re)
     sig_im_tmp = copy(sig_im)
     sig_out    = [0] * (2*hN)
-    re_part    = im_part                           = 0
+    re_part    = im_part = 0
 
     for x in range(hN):
         sig_re_tmp[x] /= hN
@@ -45,7 +45,7 @@ def calc_idft (sig_re, sig_im):
     return sig_out
 
 
-sig_in = InputSignal_1kHz_15kHz 
+sig_in = ecg_signal 
 sigs_dft = calc_dft(sig_in)
 sig_idft = calc_idft(sigs_dft[0], sigs_dft[1])
 
